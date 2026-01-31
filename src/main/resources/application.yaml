@@ -1,7 +1,6 @@
 spring:
   profiles:
-    active: dev
-
+    active: ${SPRING_PROFILES_ACTIVE:dev}
 
   application:
     name: flexigp-backend
@@ -9,8 +8,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: ${MAIL_USERNAME}
-    password: ${MAIL_PASSWORD}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
     properties:
       mail:
         smtp:
@@ -19,9 +18,9 @@ spring:
             enable: true
 
   datasource:
-    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${POSTGRES_DB}
-    username: ${POSTGRES_USER}
-    password: ${POSTGRES_PASSWORD}
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${POSTGRES_DB:flexigp}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -32,13 +31,13 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
+
 server:
-  port: ${SERVER_PORT}
+  port: ${SERVER_PORT:8081}
 
 jwt:
-  secret: ${JWT_SECRET}
-  expiration: ${JWT_EXPIRATION}
-
+  secret: ${JWT_SECRET:change-me-in-prod}
+  expiration: ${JWT_EXPIRATION:86400000}
 
 springdoc:
   api-docs:
@@ -49,17 +48,15 @@ springdoc:
     tags-sorter: alpha
     display-request-duration: true
 
-
 app:
   password-reset:
-    otp-expiration: 15
-    token-expiration: 30
-
+    otp-expiration: ${APP_PASSWORD_RESET_OTP_EXPIRATION:15}
+    token-expiration: ${APP_PASSWORD_RESET_TOKEN_EXPIRATION:30}
 
 aws:
   s3:
-    access-key: ${AWS_ACCESS_KEY}
-    secret-key: ${AWS_SECRET_KEY}
-    region: ${AWS_S3_REGION}
-    bucket-name: ${AWS_S3_BUCKET_NAME}
-    endpoint: ${AWS_S3_ENDPOINT} # Ajout crucial pour MinIO
+    access-key: ${AWS_ACCESS_KEY:}
+    secret-key: ${AWS_SECRET_KEY:}
+    region: ${AWS_S3_REGION:us-east-1}
+    bucket-name: ${AWS_S3_BUCKET_NAME:flexigp-storage}
+    endpoint: ${AWS_S3_ENDPOINT:http://localhost:9000}

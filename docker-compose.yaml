@@ -1,6 +1,20 @@
-version: "3.9"
-
 services:
+  flexigp-backend:
+    build: .
+    ports:
+      - "8081:8081"  # Votre back tourne sur 8081
+    env_file:
+      - .env  # Charge TOUTES les variables depuis .env
+    environment:
+      SERVER_PORT: 8081
+      DB_HOST: postgres
+      DB_PORT: 5432
+      AWS_S3_ENDPOINT: http://minio:9000
+    depends_on:
+      - postgres
+      - minio
+    restart: on-failure  # Redémarrer si échec
+
   postgres:
     image: postgres:16
     container_name: ism-postgres
