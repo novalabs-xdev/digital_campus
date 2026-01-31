@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admission validée - ISM Digital Campus</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f4f6f8; font-family:Arial, sans-serif">
+
+<table width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+        <td align="center" style="padding:30px 0">
+            <table width="600" cellpadding="0" cellspacing="0"
+                   style="background:#ffffff; border-radius:8px; overflow:hidden">
+
+                <tr>
+                    <td align="center" style="padding:20px; background:#0f172a">
+                        <h1 style="color: #ffffff; margin: 0; font-size: 24px;">ISM Digital Campus Admissions</h1>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="padding:30px; color:#333333">
+                        <h2 style="margin-top:0; color:#059669"> Félicitations !
+                        </h2>
+
+                        <p>
+                            Bonjour <strong th:text="${fullName}">Nom complet</strong>,
+                        </p>
+
+                        <p>
+                            Nous avons le plaisir de vous informer que votre candidature pour l'école
+                            <strong th:text="${schoolName}">École</strong> a été <strong>acceptée</strong>.
+                        </p>
+
+                        <table width="100%" cellpadding="12" cellspacing="0"
+                               style="background:#f0fdf4; border: 1px solid #bbf7d0; border-radius:6px; margin:20px 0">
+                            <tr>
+                                <td style="color: #166534;">Votre Matricule Officiel :</td>
+                                <td align="right">
+                                    <strong style="font-size: 18px; color: #15803d;" th:text="${admissionNumber}">AD-2026-ISM-00001</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="color: #166534;">Classe :</td>
+                                <td align="right">
+                                    <strong th:text="${classeName}">Nom de la classe</strong>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <p>
+                            Ce matricule est unique et sera nécessaire pour toutes vos démarches administratives futures
+                            au sein de l'établissement.
+                        </p>
+
+                        <table width="100%" cellpadding="0" cellspacing="0" style="margin:30px 0">
+                            <tr>
+                                <td align="center">
+                                    <a th:href="${portalUrl}"
+                                       style="
+                                           background-color:#2563eb;
+                                           color:#ffffff;
+                                           padding:14px 28px;
+                                           text-decoration:none;
+                                           border-radius:6px;
+                                           font-weight:bold;
+                                           display:inline-block;
+                                       ">
+                                        Accéder à mon espace
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <p style="font-size:13px; color:#555555">
+                            Veuillez conserver précieusement ce matricule.
+                        </p>
+
+                        <p>
+                            Bienvenue parmi nous,<br>
+                            <strong>L’administration ISM Digital Campus</strong>
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="center" style="padding:15px; background:#f1f5f9; font-size:12px; color:#777777">
+                        © 2026 ISM Digital Campus – Tous droits réservés
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

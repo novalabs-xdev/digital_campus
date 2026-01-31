@@ -3,7 +3,7 @@ spring:
     active: ${SPRING_PROFILES_ACTIVE:dev}
 
   application:
-    name: flexigp-backend
+    name: ism-backend
 
   mail:
     host: smtp.gmail.com
@@ -18,7 +18,7 @@ spring:
             enable: true
 
   datasource:
-    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${POSTGRES_DB:flexigp}
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${POSTGRES_DB:ism_admissions}
     username: ${POSTGRES_USER:postgres}
     password: ${POSTGRES_PASSWORD:postgres}
     driver-class-name: org.postgresql.Driver
@@ -33,10 +33,11 @@ spring:
         format_sql: true
 
 server:
-  port: ${SERVER_PORT:8081}
+  port: ${SERVER_PORT:8085}
 
+# JWT_SECRET est obligatoire (pas de valeur par défaut pour éviter tout risque en production)
 jwt:
-  secret: ${JWT_SECRET:change-me-in-prod}
+  secret: ${JWT_SECRET}
   expiration: ${JWT_EXPIRATION:86400000}
 
 springdoc:
@@ -58,5 +59,5 @@ aws:
     access-key: ${AWS_ACCESS_KEY:}
     secret-key: ${AWS_SECRET_KEY:}
     region: ${AWS_S3_REGION:us-east-1}
-    bucket-name: ${AWS_S3_BUCKET_NAME:flexigp-storage}
+    bucket-name: ${AWS_S3_BUCKET_NAME:ism-storage}
     endpoint: ${AWS_S3_ENDPOINT:http://localhost:9000}

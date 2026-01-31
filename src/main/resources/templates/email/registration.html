@@ -2,107 +2,92 @@
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Bienvenue sur flexiGP</title>
+    <title>Votre Admission - ISM Digital Campus</title>
 </head>
 <body style="margin:0; padding:0; background-color:#f4f6f8; font-family:Arial, sans-serif">
-
-<!--
-  Email HTML template.
-  Uses legacy HTML attributes for maximum email client compatibility.
--->
 
 <table width="100%" cellpadding="0" cellspacing="0">
     <tr>
         <td align="center" style="padding:30px 0">
-
             <table width="600" cellpadding="0" cellspacing="0"
-                   style="background:#ffffff; border-radius:8px; overflow:hidden">
+                   style="background:#ffffff; border-radius:8px; overflow:hidden; border: 1px solid #e2e8f0">
 
-                <!-- HEADER / LOGO -->
                 <tr>
-                    <td align="center" style="padding:20px; background:#0f172a">
-                        <img src="https://your-domain.com/assets/flexigp-logo.png"
-                             alt="flexiGP"
-                             width="140"
-                             style="display:block; border:0"/>
+                    <td align="center" style="padding:25px; background:#1a1a1a">
+                        <div style="color: #ffffff; font-size: 20px; font-weight: bold; letter-spacing: 1px;">
+                            ISM | DIGITAL CAMPUS
+                        </div>
+                        <div style="color: #fbbf24; font-size: 12px; margin-top: 5px; text-transform: uppercase;">
+                            Hackathon d'Intégration 2026
+                        </div>
                     </td>
                 </tr>
 
-                <!-- CONTENT -->
                 <tr>
-                    <td style="padding:30px; color:#333333">
-
-                        <h2 style="margin-top:0; color:#0f172a">
-                            Bienvenue sur flexiGP
+                    <td style="padding:40px 30px; color:#333333">
+                        <h2 style="margin-top:0; color:#1a1a1a; font-size: 22px;">
+                            Félicitations, vous êtes Admis !
                         </h2>
 
-                        <p>
-                            Bonjour <strong th:text="${fullName}">Nom complet</strong>,
-                        </p>
+                        <p>Bonjour <strong th:text="${fullName}">Nom complet</strong>,</p>
 
                         <p>
-                            Votre compte <strong>flexiGP</strong> a été créé avec succès.
+                            Nous avons le plaisir de vous informer que votre demande d'admission pour l'école
+                            <strong th:text="${schoolName}">École</strong> a été officiellement <strong>validée</strong>
+                            par la direction.
                         </p>
 
-                        <!-- USER INFO -->
-                        <table width="100%" cellpadding="8" cellspacing="0"
-                               style="background:#f9fafb; border-radius:6px; margin:20px 0">
+                        <div style="background-color:#f8fafc; border: 1px solid #e2e8f0; border-radius:8px; padding:20px; margin:25px 0">
+                            <h3 style="margin-top:0; font-size:16px; color:#1e293b; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">
+                                Vos nouveaux accès Étudiant
+                            </h3>
+                            <table width="100%" style="font-size: 14px; margin-top: 10px;">
+                                <tr>
+                                    <td style="padding: 5px 0; color: #64748b;">Matricule Officiel :</td>
+                                    <td style="padding: 5px 0; text-align: right;"><strong th:text="${admissionNumber}">AD-2026-0001</strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px 0; color: #64748b;">Identifiant (Email) :</td>
+                                    <td style="padding: 5px 0; text-align: right;"><strong th:text="${email}">email@exemple.com</strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px 0; color: #64748b;">Nouveau Mot de passe :</td>
+                                    <td style="padding: 5px 0; text-align: right;"><strong style="color: #2563eb;"
+                                                                                           th:text="${password}">password</strong>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
 
-                            <tr>
-                                <td>Email</td>
-                                <td><strong th:text="${email}">email</strong></td>
-                            </tr>
-                            <tr>
-                                <td>Téléphone</td>
-                                <td><strong th:text="${phone}">phone</strong></td>
-                            </tr>
-                            <tr>
-                                <td>Pays</td>
-                                <td><strong th:text="${country}">country</strong></td>
-                            </tr>
-                            <tr>
-                                <td>Mot de passe</td>
-                                <td><strong th:text="${password}">password</strong></td>
-                            </tr>
-                        </table>
-
-                        <!-- LOGIN BUTTON -->
                         <table width="100%" cellpadding="0" cellspacing="0" style="margin:30px 0">
                             <tr>
                                 <td align="center">
                                     <a th:href="${loginUrl}"
-                                       style="
-                                           background-color:#2563eb;
-                                           color:#ffffff;
-                                           padding:14px 28px;
-                                           text-decoration:none;
-                                           border-radius:6px;
-                                           font-weight:bold;
-                                           display:inline-block;
-                                       ">
-                                        Se connecter
+                                       style="background-color:#1a1a1a; color:#ffffff; padding:16px 32px; text-decoration:none; border-radius:6px; font-weight:bold; display:inline-block;">
+                                        Accéder à mon Dashboard Étudiant
                                     </a>
                                 </td>
                             </tr>
                         </table>
 
-                        <p style="font-size:13px; color:#555555">
-                            Conservez ces informations en lieu sûr.
+                        <p style="font-size:13px; color:#64748b; font-style: italic;">
+                            Note : Votre ancien compte candidat a été migré vers ce nouveau profil étudiant. Veuillez
+                            utiliser ces nouveaux identifiants pour vous connecter.
                         </p>
 
-                        <p>
-                            À bientôt,<br>
-                            <strong>L’équipe flexiGP</strong>
+                        <p style="margin-top: 30px;">
+                            Bienvenue dans votre nouvelle communauté,<br>
+                            <strong>L'équipe des Admissions ISM</strong>
                         </p>
-
                     </td>
                 </tr>
 
-                <!-- FOOTER -->
                 <tr>
                     <td align="center"
-                        style="padding:15px; background:#f1f5f9; font-size:12px; color:#777777">
-                        © 2026 flexiGP – Tous droits réservés
+                        style="padding:20px; background:#f8fafc; font-size:11px; color:#94a3b8; border-top: 1px solid #e2e8f0">
+                        © 2026 ISM Digital Campus – Plateforme de Digitalisation des Admissions
                     </td>
                 </tr>
             </table>
