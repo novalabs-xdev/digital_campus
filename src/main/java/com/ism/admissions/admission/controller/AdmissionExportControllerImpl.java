@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.time.LocalDate;
 
 @RestController
 @RequiredArgsConstructor
@@ -38,6 +39,16 @@ public class AdmissionExportControllerImpl implements AdmissionExportController 
 
     @Override
     public ResponseEntity<byte[]> downloadAllExports() {
-        return null;
+        try {
+            byte[] zipBytes = excelExportService.exportFullArchiveZip();
+
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_DISPOSITION,
+                            "attachment; filename=admissions-" + LocalDate.now() + ".zip")
+                    .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                    .body(zipBytes);
+        } catch (IOException e) {
+            return ResponseEntity.internalServerError().build();
+        }
     }
 }

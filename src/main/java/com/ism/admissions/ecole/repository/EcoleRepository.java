@@ -4,4 +4,5 @@ import com.ism.admissions.ecole.domain.Ecole;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EcoleRepository extends JpaRepository<Ecole, Long> {
+    boolean existsByCode(String code);
 }

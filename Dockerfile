@@ -22,5 +22,9 @@ WORKDIR /app
 
 COPY --from=build /app/target/*.jar app.jar
 
-# JVM optimisée pour container
-ENTRYPOINT ["java", "-XX:+UseContainerSupport", "-XX:MaxRAMPercentage=75.0", "-jar", "app.jar"]
+# Render injecte PORT automatiquement
+EXPOSE 8080
+
+# JVM optimisée pour container (local + cloud)
+ENTRYPOINT ["java","-XX:+UseContainerSupport","-XX:MaxRAMPercentage=75.0","-jar","app.jar"]
+
