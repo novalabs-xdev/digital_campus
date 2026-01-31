@@ -7,6 +7,7 @@ import com.ism.admissions.admission.generator.AdmissionNumberGenerator;
 import com.ism.admissions.admission.repository.AdmissionRepository;
 import com.ism.admissions.candidature.domain.Candidature;
 import com.ism.admissions.candidature.domain.StatutCandidature;
+import com.ism.admissions.candidature.exception.CandidatureNotFoundException;
 import com.ism.admissions.candidature.repository.CandidatureRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,7 @@ public class AdmissionServiceImpl implements AdmissionService {
 
         Candidature candidature = candidatureRepository.findById(candidatureId)
                 .orElseThrow(() ->
-                        new RuntimeException("Candidature introuvable id=" + candidatureId)
+                        new CandidatureNotFoundException(candidatureId)
                 );
 
         if (candidature.getStatut() != StatutCandidature.VALIDEE) {

@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Félicitations - Admission ISM</title>
 </head>
-<body>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+<div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd;">
+    <h2 style="color: #2c3e50;">Félicitations !</h2>
+    <p>Bonjour <strong th:text="${nom}">Candidat</strong>,</p>
+    <p>Nous avons le plaisir de vous informer que votre candidature pour l'école
+        <strong th:text="${ecole}">Ecole</strong> a été <strong>VALIDÉE</strong>.</p>
 
+    <div style="background-color: #f9f9f9; padding: 15px; border-left: 5px solid #27ae60; margin: 20px 0;">
+        <p style="margin: 0;">Votre matricule d'admission officiel est :</p>
+        <h3 style="margin: 5px 0; color: #27ae60;" th:text="${matricule}">AD-2026-XXX-001</h3>
+    </div>
+
+    <p>Vous recevrez prochainement les modalités d'inscription définitive.</p>
+    <p>Cordialement,<br>L'administration ISM.</p>
+</div>
 </body>
 </html>
