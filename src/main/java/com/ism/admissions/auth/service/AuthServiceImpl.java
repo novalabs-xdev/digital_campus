@@ -7,6 +7,7 @@ import com.ism.admissions.exception.business.EmailAlreadyUsedException;
 import com.ism.admissions.exception.business.InvalidCredentialsException;
 import com.ism.admissions.mail.service.MailService;
 import com.ism.admissions.security.jwt.JwtService;
+import com.ism.admissions.user.domain.Role;
 import com.ism.admissions.user.domain.User;
 import com.ism.admissions.user.service.UserService;
 import jakarta.servlet.http.Cookie;
@@ -36,9 +37,7 @@ public class AuthServiceImpl implements AuthService {
         User user = new User();
         user.setEmail(request.email());
         user.setPassword(passwordEncoder.encode(request.password()));
-
-        // Logique de rôle
-
+        user.setRole(Role.CANDIDAT);
 
         User savedUser = userService.createUser(user);
 

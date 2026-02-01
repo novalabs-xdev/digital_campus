@@ -20,8 +20,6 @@ public record RegisterRequest(
         String phone,
 
         @NotBlank
-        String country,
-
-        String role // "CLIENT" ou "GP"
+        String country
 ) {
 }

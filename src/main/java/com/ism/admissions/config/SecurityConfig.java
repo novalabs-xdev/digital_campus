@@ -51,12 +51,14 @@ public class SecurityConfig {
                 // 4. Autorisation des routes
                 .authorizeHttpRequests(auth -> auth
 
+                        // ---------- HEALTH CHECK (keep-alive) ----------
+                        .requestMatchers(HttpMethod.GET, "/api/v1/health").permitAll()
+
                         // ---------- ROUTES PUBLIQUES ----------
                         .requestMatchers(
                                 "/",
                                 "/ws/**",
                                 "/api/v1/auth/**",
-                                "/api/v1/health",
                                 "/api/v1/webhooks/**",
                                 "/favicon.ico",
                                 "/v3/api-docs/**",
@@ -115,7 +117,11 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         // Autorise le front Angular
-        configuration.setAllowedOrigins(List.of("http://localhost:4200", "http://localhost:8080"));
+        configuration.setAllowedOrigins(List.of(
+                "http://localhost:4200",
+                "http://localhost:8080",
+                "https://dashboard.render.com",
+                "https://*.onrender.com"   ));
 
         // Méthodes autorisées
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
