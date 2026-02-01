@@ -4,6 +4,7 @@ import com.ism.admissions.admission.domain.Admission;
 import com.ism.admissions.admission.service.AdmissionService;
 import com.ism.admissions.candidature.domain.Candidature;
 import com.ism.admissions.candidature.domain.StatutCandidature;
+import java.util.List;
 import com.ism.admissions.candidature.exception.CandidatureNotFoundException;
 import com.ism.admissions.candidature.exception.CandidatureStatutInvalideException;
 import com.ism.admissions.candidature.exception.DocumentsManquantsException;
@@ -118,6 +119,19 @@ public class CandidatureServiceImpl implements CandidatureService {
 
         log.info("Candidature {} validée. Compte migré en ETUDIANT avec le matricule {}",
                 candidatureId, admission.getNumeroAdmission());
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Candidature> listerCandidatures(StatutCandidature statut, Long ecoleId, Long classeId) {
+        return candidatureRepository.findWithFilters(statut, ecoleId, classeId);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Candidature getCandidature(Long id) {
+        return candidatureRepository.findById(id)
+                .orElseThrow(() -> new CandidatureNotFoundException(id));
     }
 
     @Override

@@ -17,6 +17,16 @@ public interface AdmissionRepository extends JpaRepository<Admission, Long> {
 
     List<Admission> findByCandidatureClasseId(Long classeId);
 
+    List<Admission> findByCandidatureEcoleId(Long ecoleId);
+
+    @Query("SELECT a FROM Admission a WHERE " +
+            "(:ecoleId IS NULL OR a.candidature.ecole.id = :ecoleId) AND " +
+            "(:classeId IS NULL OR a.candidature.classe.id = :classeId)")
+    List<Admission> findWithFilters(
+            @Param("ecoleId") Long ecoleId,
+            @Param("classeId") Long classeId
+    );
+
     @Query("SELECT COUNT(a) FROM Admission a WHERE a.numeroAdmission LIKE CONCAT('AD-', :annee, '-', :codeEcole, '-%')")
     long countByAnneeAndEcole(@Param("annee") String annee, @Param("codeEcole") String codeEcole);
 }
