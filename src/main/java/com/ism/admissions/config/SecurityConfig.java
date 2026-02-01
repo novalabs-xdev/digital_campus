@@ -56,6 +56,7 @@ public class SecurityConfig {
                                 "/",
                                 "/ws/**",
                                 "/api/v1/auth/**",
+                                "/api/v1/health",
                                 "/api/v1/webhooks/**",
                                 "/favicon.ico",
                                 "/v3/api-docs/**",
