@@ -35,6 +35,7 @@ public class CandidatServiceImpl implements CandidatService {
         user.setEmail(candidat.getEmail());
         user.setNom(candidat.getNom());
         user.setPrenom(candidat.getPrenom());
+        user.setPassword("passer123");
         userService.createUser(user);
 
         if (candidatRepository.existsByEmail(candidat.getEmail())) {
