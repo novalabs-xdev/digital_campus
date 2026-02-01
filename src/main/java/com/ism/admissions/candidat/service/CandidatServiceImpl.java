@@ -8,6 +8,7 @@ import com.ism.admissions.notification.service.NotificationService;
 import com.ism.admissions.user.domain.Role;
 import com.ism.admissions.user.domain.User;
 import com.ism.admissions.user.repository.UserRepository;
+import com.ism.admissions.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -24,13 +25,22 @@ public class CandidatServiceImpl implements CandidatService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final NotificationService notificationService;
+    private final UserService userService;
 
     @Override
     @Transactional
     public Candidat creerCandidat(Candidat candidat) {
+        User user = new User();
+        user.setRole(Role.CANDIDAT);
+        user.setEmail(candidat.getEmail());
+        user.setNom(candidat.getNom());
+        user.setPrenom(candidat.getPrenom());
+        userService.createUser(user);
+
         if (candidatRepository.existsByEmail(candidat.getEmail())) {
             throw new CandidatDoublonException("Candidat avec cet email existe déjà");
         }
+
         return candidatRepository.save(candidat);
     }
 
