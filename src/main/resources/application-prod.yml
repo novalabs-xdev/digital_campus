@@ -6,7 +6,10 @@ spring:
   # DATABASE (Render PostgreSQL)
   # ======================
   datasource:
-    url: ${DATABASE_URL}
+    # L'URL doit être épurée et commencer par jdbc:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://dpg-d5v8meqqcgvc739cu9lg-a.oregon-postgres.render.com:5432/ism_postgres_prod?sslmode=require}
+    username: ${SPRING_DATASOURCE_USERNAME:ism_postgres_prod_user}
+    password: ${SPRING_DATASOURCE_PASSWORD:twUgNfSEKiaAogB0ZiVxE2ejALEKnhA5}
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 5
@@ -19,7 +22,7 @@ spring:
   jpa:
     show-sql: false
     hibernate:
-      ddl-auto: validate   # ⚠️ JAMAIS create/update en prod
+      ddl-auto: update   # ⚠️ JAMAIS create/update en prod
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
